@@ -1,0 +1,7 @@
+CREATE DATABASE IF NOT EXISTS `events_development`;
+CREATE DATABASE IF NOT EXISTS `events_production`;
+CREATE DATABASE IF NOT EXISTS `events_test`;
+GRANT ALL PRIVILEGES ON events_development.* TO 'events'@'%' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON events_production.* TO 'events'@'%' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON events_test.* TO 'events'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
