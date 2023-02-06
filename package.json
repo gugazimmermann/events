@@ -2,7 +2,10 @@
   "name": "events",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start:db": "docker compose up -d",
+    "stop:db": "docker compose down"
+  },
   "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
