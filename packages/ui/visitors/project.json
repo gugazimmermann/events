@@ -1,0 +1,89 @@
+{
+  "name": "ui-visitors",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/ui/visitors/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/packages/ui/visitors",
+        "index": "packages/ui/visitors/src/index.html",
+        "baseHref": "/",
+        "main": "packages/ui/visitors/src/main.tsx",
+        "tsConfig": "packages/ui/visitors/tsconfig.app.json",
+        "assets": [
+          "packages/ui/visitors/src/favicon.ico",
+          "packages/ui/visitors/src/assets"
+        ],
+        "styles": ["packages/ui/visitors/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "packages/ui/visitors/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "packages/ui/visitors/src/environments/environment.ts",
+              "with": "packages/ui/visitors/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ui-visitors:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ui-visitors:build:development"
+        },
+        "production": {
+          "buildTarget": "ui-visitors:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/ui/visitors/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/ui/visitors/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
